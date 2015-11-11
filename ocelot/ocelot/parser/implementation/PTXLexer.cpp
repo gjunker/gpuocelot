@@ -11,6 +11,7 @@
 #define yyFlexLexer ptxFlexLexer
 #include <FlexLexer.h>
 #include <ocelot/parser/interface/PTXLexer.h>
+#include <ptxgrammar.hpp>
 
 #include <cstring>
 #include <cassert>

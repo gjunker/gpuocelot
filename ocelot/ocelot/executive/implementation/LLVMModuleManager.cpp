@@ -329,8 +329,6 @@ static void setupSharedMemoryReferences(ir::PTXKernel& kernel,
 	typedef std::unordered_map<std::string, unsigned int> OffsetMap;
 	typedef std::unordered_set<std::string> StringSet;
 	typedef std::deque<ir::PTXOperand*> OperandVector;
-	typedef std::unordered_map<std::string, 
-		ir::Module::GlobalMap::const_iterator> GlobalMap;
 
 	report( "  Setting up shared memory references." );
 

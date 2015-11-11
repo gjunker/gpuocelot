@@ -19,6 +19,8 @@
 #include <unordered_set>
 #include <vector>
 
+struct YYLTYPE;
+
 namespace parser
 {
 	/*! \brief An implementation of the Parser interface for PTX */
@@ -359,6 +361,8 @@ namespace parser
 	};
 
 }
+
+#include <ptxgrammar.hpp>
 
 #endif
 

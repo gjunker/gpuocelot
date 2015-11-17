@@ -186,3 +186,4 @@ tests/unstructured/monte-carlo-photon-transport
 tests/unstructured/sphyraena/sphyraena
 tests/unstructured/UnstructuredMandelbrot
 trace-generators/traces/interface
+ocelot/ocelot/parser/implementation

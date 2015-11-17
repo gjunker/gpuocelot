@@ -7,7 +7,7 @@
 
 #include <ocelot/ir/interface/Module.h>
 #include <ocelot/ir/interface/PTXKernel.h>
-#include <ocelot/parser/interface/PTXParser.h>
+#include <ocelot/parser/implementation/PTXParser.h>
 
 #include <hydrazine/interface/debug.h>
 #include <hydrazine/interface/Version.h>

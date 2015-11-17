@@ -6,11 +6,19 @@
 
 %{
 	#include <iostream>
-	#include <ocelot/parser/interface/PTXParser.h>
-	#include <ocelot/parser/interface/PTXLexer.h>
-	#include <hydrazine/interface/debug.h>
+        #include <ocelot/parser/implementation/PTXLexer.h>
+        #include <ocelot/parser/implementation/PTXParseException.h>
+        #include <ocelot/parser/implementation/PTXParserState.h>
+        #include <hydrazine/interface/debug.h>
 	#include <cassert>
 	#include <cstring>
+
+        namespace parser {
+            class PTXLexer;
+            class PTXParserState;
+        }
+
+        #include <ptxgrammar.hpp>
 
 	#define YYERROR_VERBOSE 1
 
@@ -24,9 +32,9 @@
 	{
 	
 	int yylex( YYSTYPE* token, YYLTYPE* location, parser::PTXLexer& lexer, 
-		parser::PTXParser::State& state );
+                parser::PTXParserState& state );
 	void yyerror( YYLTYPE* location, parser::PTXLexer& lexer, 
-		parser::PTXParser::State& state, char const* message );
+                parser::PTXParserState& state, char const* message );
 	
 	std::string yyTypeToString( int );
 	
@@ -43,9 +51,9 @@
 }
 
 %parse-param {parser::PTXLexer& lexer}
-%parse-param {parser::PTXParser::State& state}
+%parse-param {parser::PTXParserState& state}
 %lex-param   {parser::PTXLexer& lexer}
-%lex-param   {parser::PTXParser::State& state}
+%lex-param   {parser::PTXParserState& state}
 %pure-parser
 
 %token<text> TOKEN_LABEL TOKEN_IDENTIFIER TOKEN_STRING TOKEN_METADATA
@@ -1613,7 +1621,7 @@ vote : OPCODE_VOTE voteOperation voteDataType operand ',' operand ';'
 %%
 
 int yylex( YYSTYPE* token, YYLTYPE* location, parser::PTXLexer& lexer, 
-	parser::PTXParser::State& state )
+        parser::PTXParserState& state )
 {
 	lexer.yylval = token;
 	
@@ -1630,14 +1638,14 @@ int yylex( YYSTYPE* token, YYLTYPE* location, parser::PTXLexer& lexer,
 }
 
 void yyerror( YYLTYPE* location, parser::PTXLexer& lexer, 
-	parser::PTXParser::State& state, char const* message )
+        parser::PTXParserState& state, char const* message )
 {
-	parser::PTXParser::Exception exception;
+        parser::PTXParseException exception;
 	std::stringstream stream;
-	stream << parser::PTXParser::toString( *location, state ) 
+        stream << parser::toString( *location, state )
 		<< " " << message;
 	exception.message = stream.str();
-	exception.error = parser::PTXParser::State::SyntaxError;
+        exception.error = parser::PTXParseException::SyntaxError;
 	throw exception;
 }
 

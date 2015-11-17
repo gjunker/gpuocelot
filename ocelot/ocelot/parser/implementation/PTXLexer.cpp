@@ -7,10 +7,8 @@
 #ifndef PTX_LEXER_CPP_INCLUDED
 #define PTX_LEXER_CPP_INCLUDED
 
-#undef yyFlexLexer
-#define yyFlexLexer ptxFlexLexer
-#include <FlexLexer.h>
-#include <ocelot/parser/interface/PTXLexer.h>
+#include "PTXLexer.h"
+#include "PTXParserState.h"
 #include <ptxgrammar.hpp>
 
 #include <cstring>

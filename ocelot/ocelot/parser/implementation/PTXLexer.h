@@ -10,10 +10,16 @@
 
 union YYSTYPE;
 
+//#if defined(ptxFlexLexer)
+//#undef yyFlexLexer
+//#define yyFlexLexer ptxFlexLexer
+//#endif
+#include <FlexLexer.h>
+
 namespace parser
 {
 	/*!	\brief A wrapper around yyFlexLexer to allow for a local variable */
-	class PTXLexer : public ptxFlexLexer
+    class PTXLexer : public yyFlexLexer
 	{
 		public:
 			YYSTYPE*     yylval;

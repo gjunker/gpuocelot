@@ -386,8 +386,8 @@ ocelot/ocelot/parser/implementation/ptxgrammar.yy
 ocelot/ocelot/parser/implementation/PTXLexer.cpp
 ocelot/ocelot/parser/implementation/PTXParser.cpp
 ocelot/ocelot/parser/interface/Parser.h
-ocelot/ocelot/parser/interface/PTXLexer.h
-ocelot/ocelot/parser/interface/PTXParser.h
+ocelot/ocelot/parser/implementation/PTXLexer.h
+ocelot/ocelot/parser/implementation/PTXParser.h
 ocelot/ocelot/parser/test/TestLexer.cpp
 ocelot/ocelot/parser/test/TestLexer.h
 ocelot/ocelot/parser/test/TestParser.cpp
@@ -2155,3 +2155,8 @@ trace-generators/traces/interface/WatchTraceGenerator.h
 trace-generators/traces/interface/X86TraceGenerator.h
 trace-generators/traces/interface/X86TraceGeneratorCommon.h
 build.py
+ocelot/ocelot/parser/implementation/PTXParserState.h
+ocelot/ocelot/parser/implementation/PTXParserState.cpp
+ocelot/ocelot/parser/implementation/PTXParseException.h
+ocelot/ocelot/parser/implementation/PTXParseException.cpp
+ocelot/SConscript

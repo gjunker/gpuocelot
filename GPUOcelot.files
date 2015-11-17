@@ -2160,3 +2160,13 @@ ocelot/ocelot/parser/implementation/PTXParserState.cpp
 ocelot/ocelot/parser/implementation/PTXParseException.h
 ocelot/ocelot/parser/implementation/PTXParseException.cpp
 ocelot/SConscript
+ocelot/SConstruct
+SConstruct
+SConscript
+tests/cuda2.2/SConscript
+tests/cuda2.3/SConscript
+tests/cuda2.3/tests/thrust_mode/mode.cu
+tests/cuda2.3/tests/thrust_padded_grid_reduction/padded_grid_reduction.cu
+tests/cuda3.2/SConscript
+tests/cuda4.1sdk/SConscript
+tests/parboil/SConscript

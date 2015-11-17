@@ -98,8 +98,8 @@ paths = [ '-I' + env['CUDA_PATH'] + '/shared',
           '-I' + env['CUDA_PATH'] ]
 
 env.Append(CPPFLAGS = paths)
-env.Append(CPPFLAGS = '-I' + os.path.join(env['install_path'], 'include'))
-env.Append(LIBPATH = [os.path.join(env['install_path'], 'lib')])
+env.Append(CPPFLAGS = ['-I' + os.path.join(env['install_path'], 'include'), '-I' + os.path.abspath('../../../ocelot')])
+env.Append(LIBPATH = [os.path.join(env['install_path'], 'lib'), '/usr/local/cuda/lib64', '../../ocelot'])
 
 	
 for testApplication in testApplications:
@@ -107,7 +107,7 @@ for testApplication in testApplications:
 	testApp = env.Program(testApplication[0], 
 		[builder.MapSource(env, 
 			"tests/%s/%s" % (path, x), paths) for x in testApplication[1]], 
-		LIBS=['-locelot', libsdk2_3, '-lGL'])
+                LIBS=['-locelot', libsdk2_3, '-lGL', 'cudart', 'tinfo'])
 	tests.append(testApp)
 
 	env.Alias('tests', testApp)

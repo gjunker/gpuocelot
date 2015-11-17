@@ -140,7 +140,10 @@ paths = [ '-I' + env['CUDA_PATH'] + '/shared',
 env.Append(CPPFLAGS = paths)
 env.Append(LIBPATH = env['CUDA_PATHS'][1])
 env.Append(LIBPATH = [os.path.join(env['install_path'], 'lib')])
-	
+
+env.Append(CPPFLAGS = ['-I' + os.path.join(env['install_path'], 'include'), '-I' + os.path.abspath('../../../ocelot')])
+env.Append(LIBPATH = [os.path.join(env['install_path'], 'lib'), '/usr/local/cuda/lib64', '../../ocelot'])
+
 for testApplication in testApplications:
 	path = testApplication[0] if len(testApplication) == 2 else testApplication[2]
 	additionalLibs = []
@@ -153,7 +156,7 @@ for testApplication in testApplications:
 		[builder.MapSource(env, 
 			"tests/%s/%s" % (path, x), 
 			(" ".join(paths) + " -I./" + env['CUDA_PATH'] + "/tests/%s") % (path,)) for x in testApplication[1]], 
-		LIBS=additionalLibs + ['-lglut', libsdk3_2, '-lGLU', '-locelot', '-lGLEW', '-lGL', '-lX11', '-lpthread', '-lm'])
+                LIBS=additionalLibs + ['-lglut', libsdk3_2, '-lGLU', '-locelot', '-lGLEW', '-lGL', '-lX11', '-lpthread', '-lm',  'cudart', 'tinfo'])
 	tests.append(testApp)
 
 	env.Alias('tests', testApp)

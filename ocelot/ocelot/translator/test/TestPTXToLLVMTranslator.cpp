@@ -22,7 +22,8 @@
 #include <ocelot/transforms/interface/ConvertPredicationToSelectPass.h>
 #include <ocelot/transforms/interface/PassManager.h>
 
-#include <ocelot/parser/interface/PTXParser.h>
+#include <ocelot/parser/implementation/PTXParseException.h>
+#include <ocelot/parser/implementation/PTXParser.h>
 
 #include <hydrazine/interface/ArgumentParser.h>
 #include <hydrazine/interface/macros.h>
@@ -94,9 +95,9 @@ namespace test
 		{
 			module.load( ptxFile );
 		}
-		catch(parser::PTXParser::Exception& e)
+        catch(parser::PTXParseException& e)
 		{
-			if(e.error == parser::PTXParser::State::NotVersion2_1)
+            if(e.error == parser::PTXParseException::NotVersion2_1)
 			{
 				status << "Skipping file with incompatible ptx version." 
 					<< std::endl;

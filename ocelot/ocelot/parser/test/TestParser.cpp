@@ -13,7 +13,8 @@
 #include <queue>
 #include <fstream>
 
-#include <ocelot/parser/interface/PTXParser.h>
+#include <ocelot/parser/implementation/PTXParseException.h>
+#include <ocelot/parser/implementation/PTXParser.h>
 #include <ocelot/parser/test/TestParser.h>
 
 #include <hydrazine/interface/ArgumentParser.h>
@@ -116,8 +117,8 @@ namespace test
 			parse_attempt = 2;
 			second.load(stream2);
 		}
-		catch (const parser::PTXParser::Exception& exp) {
-			if (exp.error == parser::PTXParser::State::NotVersion2_1)
+        catch (const parser::PTXParseException& exp) {
+            if (exp.error == parser::PTXParseException::NotVersion2_1)
 			{
 				status << "Skipping file with incompatible ptx version." 
 					<< std::endl;

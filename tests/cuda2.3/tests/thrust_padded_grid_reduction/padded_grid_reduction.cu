@@ -38,7 +38,7 @@ struct transform_tuple :
         OutputTuple operator()(const InputTuple& t) const
         { 
             bool is_valid = (thrust::get<0>(t) % N) < n;
-            return result_type(is_valid, thrust::get<1>(t), thrust::get<1>(t));
+            return OutputTuple(is_valid, thrust::get<1>(t), thrust::get<1>(t));
         }
 };
 
@@ -56,7 +56,7 @@ struct reduce_tuple :
         Tuple operator()(const Tuple& t0, const Tuple& t1) const
         { 
             if(thrust::get<0>(t0) && thrust::get<0>(t1)) // both valid
-                return result_type(true, 
+                return Tuple(true,
                                    min(thrust::get<1>(t0), thrust::get<1>(t1)),
                                    max(thrust::get<2>(t0), thrust::get<2>(t1)));
             else if (thrust::get<0>(t0))

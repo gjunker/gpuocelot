@@ -196,7 +196,7 @@ Default(OcelotConfig)
 
 # Create the ocelot unit tests
 
-test_libs = ['-lboost_system', '-lboost_filesystem']
+test_libs = ['-lboost_system', '-lboost_filesystem', 'cudart']
 
 level_map = { 'none' : 0, 'basic' : 1, 'full' : 2 }
 enabled_tests = []
@@ -257,7 +257,7 @@ for test in tests:
 	libs = ocelot_libs
 	if len(test) > 3:
 		libs.append(test[3])
-        Test = env.Program(test[0], [MapSource(env, test[1])], LIBS=libs, LIBPATH=['.'])
+        Test = env.Program(test[0], [MapSource(env, test[1])], LIBS=libs, LIBPATH=['.', '/usr/local/cuda/lib64'])
 	env.Depends(Test, libocelot)
 	if level_map[env['test_level']] >= level_map[test[2]]:
 		enabled_tests.append((test[0], Test))

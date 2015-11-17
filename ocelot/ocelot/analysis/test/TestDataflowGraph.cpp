@@ -14,7 +14,9 @@
 #include <ocelot/ir/interface/PTXKernel.h>
 #include <ocelot/ir/interface/Module.h>
 
-#include <ocelot/parser/interface/PTXParser.h>
+#include <ocelot/parser/implementation/PTXParseException.h>
+#include <ocelot/parser/implementation/PTXParser.h>
+#include <ocelot/parser/implementation/PTXParserState.h>
 
 // Hydrazine Includes
 #include <hydrazine/interface/ArgumentParser.h>
@@ -303,9 +305,9 @@ namespace test
 			{
 				module.load( file );
 			}
-			catch(parser::PTXParser::Exception& e)
+            catch(parser::PTXParseException& e)
 			{
-				if(e.error == parser::PTXParser::State::NotVersion2_1)
+                if(e.error == parser::PTXParseException::NotVersion2_1)
 				{
 					status << "  Skipping file with incompatible ptx version." 
 						<< std::endl;
@@ -356,9 +358,9 @@ namespace test
 			{
 				module.load( *file );
 			}
-			catch(parser::PTXParser::Exception& e)
+            catch(parser::PTXParseException& e)
 			{
-				if(e.error == parser::PTXParser::State::NotVersion2_1)
+                if(e.error == parser::PTXParseException::NotVersion2_1)
 				{
 					status << "  Skipping file with incompatible ptx version." 
 						<< std::endl;
@@ -403,9 +405,9 @@ namespace test
 			{
 				module.load( *file );
 			}
-			catch(parser::PTXParser::Exception& e)
+            catch(parser::PTXParseException& e)
 			{
-				if(e.error == parser::PTXParser::State::NotVersion2_1)
+                if(e.error == parser::PTXParseException::NotVersion2_1)
 				{
 					status << "  Skipping file with incompatible ptx version." 
 						<< std::endl;

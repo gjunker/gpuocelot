@@ -18,10 +18,9 @@
 #include <queue>
 #include <fstream>
 
-#undef yyFlexLexer
-#define yyFlexLexer ptxFlexLexer
-#include <FlexLexer.h>
-#include <ocelot/parser/interface/PTXLexer.h>
+#include <ocelot/parser/implementation/PTXParser.h>
+#include <ocelot/parser/implementation/PTXLexer.h>
+#include <ptxgrammar.hpp>
 
 #include <hydrazine/interface/ArgumentParser.h>
 #include <hydrazine/interface/macros.h>

@@ -79,6 +79,9 @@ specificallyRequiresCublas = ()
 env.Append(LIBPATH = [lib_path])
 env.Append(LIBPATH = [os.path.join(env['install_path'], 'lib')])
 
+env.Append(CPPFLAGS = ['-I' + os.path.join(env['install_path'], 'include'), '-I' + os.path.abspath('../../../ocelot')])
+env.Append(LIBPATH = [os.path.join(env['install_path'], 'lib'), '/usr/local/cuda/lib64', '../../ocelot'])
+
 tests = []
 for testApplication in testApplications:
 	path = testApplication[0] if len(testApplication) == 2 else testApplication[2]
@@ -94,7 +97,7 @@ for testApplication in testApplications:
 	testApp = localEnv.Program(testApplication[0], 
 		[builder.MapSource(env, 
 			"benchmarks/%s/src/cuda/%s" % (path, x), appIncludePath) for x in testApplication[1]], 
-		LIBS=additionalLibs + ['-lglut', '-lGLU', '-locelot', '-lGLEW', libparboil])
+                LIBS=additionalLibs + ['-lglut', '-lGLU', '-locelot', '-lGLEW', libparboil, 'tinfo'])
 	tests.append(testApp)
 
 	env.Alias('tests', testApp)

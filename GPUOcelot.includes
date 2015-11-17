@@ -187,3 +187,10 @@ tests/unstructured/sphyraena/sphyraena
 tests/unstructured/UnstructuredMandelbrot
 trace-generators/traces/interface
 ocelot/ocelot/parser/implementation
+tests/cuda2.2
+tests/cuda2.3
+tests/cuda2.3/tests/thrust_mode
+tests/cuda2.3/tests/thrust_padded_grid_reduction
+tests/cuda3.2
+tests/cuda4.1sdk
+tests/parboil
